@@ -245,6 +245,13 @@ main {
   max-width: 12ch;
   font-size: clamp(2.8rem, 7vw, 5.6rem);
   text-wrap: balance;
+  letter-spacing: -0.035em;
+}
+
+.hero h1 {
+  max-width: 9ch;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 .page-hero {
@@ -307,6 +314,16 @@ main {
   background: rgba(255, 255, 255, 0.56);
 }
 
+.hero .metric {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.hero .metric span,
+.hero .metric strong {
+  color: inherit;
+}
+
 .metric span,
 .feature-list span,
 .two-col-list span,
@@ -346,6 +363,14 @@ main {
   font-size: clamp(1.9rem, 4vw, 3.2rem);
 }
 
+.section-judgement .section-intro h2 {
+  max-width: 8ch;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-align: left;
+  text-justify: auto;
+}
+
 .cards-works {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -362,6 +387,22 @@ main {
   box-shadow: var(--shadow);
 }
 
+.contact-card {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 10px;
+}
+
+.contact-card .card-tag {
+  margin: 0;
+  line-height: 1;
+}
+
+.contact-card h2 {
+  margin-top: 0;
+  line-height: 1;
+}
+
 .card-body p,
 .service-card p,
 .feature-text,
@@ -370,6 +411,28 @@ main {
 .brief-list li {
   margin: 0;
   color: var(--muted);
+}
+
+.card-body {
+  display: grid;
+  gap: 12px;
+}
+
+.card-body .card-tag {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+}
+
+.card h3 {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.card-body p:last-child {
+  font-size: 1rem;
+  line-height: 1.75;
 }
 
 .note p {
@@ -396,14 +459,18 @@ main {
   display: inline-flex;
   width: fit-content;
   padding: 12px 16px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(146, 182, 142, 0.65);
   border-radius: 999px;
+  background: #9db895;
+  color: #ffffff;
   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .button:hover,
 .site-footer a:hover {
   transform: translateY(-1px);
+  background: #89a880;
+  color: #ffffff;
 }
 
 .feature-panel {
@@ -504,6 +571,7 @@ main {
 
 .contact-layout {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .contact-list,
@@ -515,13 +583,27 @@ main {
 
 .contact-list li,
 .brief-list li {
-  padding: 14px 0;
+  display: flex;
+  align-items: center;
+  min-height: 118px;
+  padding: 18px 0;
   border-bottom: 1px solid var(--line);
 }
 
 .contact-list li:last-child,
 .brief-list li:last-child {
   border-bottom: 0;
+}
+
+.contact-list li {
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+
+.brief-list li {
+  line-height: 1.65;
 }
 
 .site-footer {
@@ -626,6 +708,26 @@ main {
     align-items: flex-start;
   }
 
+  .site-header {
+    gap: 18px;
+    padding: 20px 22px;
+  }
+
+  .brand {
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+  }
+
+  .site-nav {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .site-nav a {
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+
   .hero,
   .page-hero {
     padding: 24px;
@@ -634,6 +736,56 @@ main {
   .hero h1,
   .page-hero h1 {
     max-width: none;
+  }
+
+  .hero {
+    gap: 22px;
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: 14px;
+  }
+
+  .hero .eyebrow,
+  .page-hero .eyebrow {
+    margin-bottom: 0;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.5rem, 15vw, 4.8rem);
+    line-height: 0.96;
+    letter-spacing: -0.03em;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    text-wrap: pretty;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(3rem, 14vw, 4.2rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    text-wrap: pretty;
+  }
+
+  .lead {
+    font-size: 0.98rem;
+    line-height: 1.75;
+    text-align: left;
+  }
+
+  .hero-meta {
+    gap: 14px;
+  }
+
+  .metric,
+  .feature-list div,
+  .two-col-list div {
+    padding: 20px 18px;
   }
 
   .page-hero {
@@ -646,6 +798,10 @@ main {
     padding: 24px;
   }
 
+  .service-stack {
+    gap: 18px;
+  }
+
   .service-head {
     gap: 12px;
   }
@@ -654,8 +810,69 @@ main {
     white-space: normal;
   }
 
+  .service-card > p,
+  .note p,
+  .contact-card p,
+  .brief-list li {
+    text-align: left;
+  }
+
   .featured-service .service-head {
     align-items: flex-start;
+  }
+
+  .price {
+    font-size: clamp(1.8rem, 10vw, 2.8rem);
+  }
+
+  .contact-layout {
+    gap: 18px;
+  }
+
+  .contact-card {
+    padding: 24px;
+  }
+
+  .contact-card h2,
+  .service-card h2 {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .contact-card {
+    gap: 10px;
+  }
+
+  .contact-card h2 {
+    margin-top: 0;
+  }
+
+  .contact-list,
+  .brief-list {
+    margin-top: 8px;
+  }
+
+  .contact-list li,
+  .brief-list li {
+    min-height: auto;
+    padding: 18px 0;
+  }
+
+  .section-grid {
+    gap: 18px;
+  }
+
+  .section-intro h2 {
+    font-size: clamp(2.2rem, 11vw, 3.2rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+  }
+
+  .card,
+  .note,
+  .feature-panel {
+    padding: 24px;
   }
 
   .intro-cn {

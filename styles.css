@@ -387,6 +387,10 @@ main {
   background: linear-gradient(180deg, #e6dbcb 0%, #c0b09a 100%);
 }
 
+.card-visual.is-interactive {
+  cursor: pointer;
+}
+
 .button,
 .site-footer a {
   display: inline-flex;

@@ -37,65 +37,65 @@
       return;
     }
 
-    var activationEvents = ["touchstart", "click", "scroll"];
-    var hasActivated = false;
+    var isWeChat = /MicroMessenger/i.test(window.navigator.userAgent);
 
     cardVideos.forEach(function (video) {
+      var frame = video.closest(".media-frame");
+      var posterButton = frame ? frame.querySelector(".js-video-poster") : null;
+
       video.muted = true;
       video.defaultMuted = true;
       video.setAttribute("muted", "");
 
-      attemptPlay(video);
+      if (!isWeChat) {
+        attemptPlay(video);
+      }
 
       video.addEventListener("loadeddata", function () {
-        attemptPlay(video);
+        if (!isWeChat) {
+          attemptPlay(video);
+        }
       });
 
-      video.addEventListener("click", function () {
-        if (video.paused) {
+      if (posterButton) {
+        posterButton.addEventListener("click", function () {
           attemptPlay(video, true);
+        });
+      }
+
+      video.addEventListener("pause", function () {
+        if (!frame || video.ended) {
           return;
         }
 
-        video.pause();
-        enableManualPlayback(video);
+        frame.classList.remove("is-playing");
       });
     });
 
-    document.addEventListener("WeixinJSBridgeReady", function () {
-      playAll(true);
-    });
-
-    activationEvents.forEach(function (eventName) {
-      window.addEventListener(
-        eventName,
-        function () {
-          if (hasActivated) {
-            return;
-          }
-
-          hasActivated = true;
-          playAll(true);
-        },
-        { once: true, passive: true }
-      );
-    });
-
-    function playAll(fromUserGesture) {
-      cardVideos.forEach(function (video) {
-        attemptPlay(video, fromUserGesture);
+    if (isWeChat) {
+      document.addEventListener("WeixinJSBridgeReady", function () {
+        cardVideos.forEach(function (video) {
+          attemptPlay(video);
+        });
       });
     }
 
     function attemptPlay(video, fromUserGesture) {
+      var frame = video.closest(".media-frame");
       var playResult = video.play();
 
       if (!playResult || typeof playResult.then !== "function") {
+        if (frame) {
+          frame.classList.add("is-playing");
+        }
         return;
       }
 
       playResult
         .then(function () {
+          if (frame) {
+            frame.classList.add("is-playing");
+          }
           video.removeAttribute("controls");
           video.classList.remove("is-interactive");
         })
@@ -107,8 +107,12 @@
     }
 
     function enableManualPlayback(video) {
+      var frame = video.closest(".media-frame");
       video.setAttribute("controls", "controls");
       video.classList.add("is-interactive");
+      if (frame) {
+        frame.classList.add("is-playing");
+      }
     }
   }
 

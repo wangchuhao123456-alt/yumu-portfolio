@@ -387,8 +387,86 @@ main {
   background: linear-gradient(180deg, #e6dbcb 0%, #c0b09a 100%);
 }
 
+.media-frame {
+  position: relative;
+  margin-bottom: 18px;
+}
+
 .card-visual.is-interactive {
   cursor: pointer;
+}
+
+.video-poster {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 20px;
+  border: 0;
+  border-radius: 18px;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.media-frame.is-playing .video-poster {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.poster-a {
+  background:
+    linear-gradient(180deg, rgba(19, 19, 19, 0.12), rgba(19, 19, 19, 0.22)),
+    linear-gradient(135deg, #ddd0bc 0%, #b5a285 100%);
+}
+
+.poster-b {
+  background:
+    linear-gradient(180deg, rgba(19, 19, 19, 0.1), rgba(19, 19, 19, 0.24)),
+    linear-gradient(135deg, #d8d0c2 0%, #9b9487 100%);
+}
+
+.poster-c {
+  background:
+    linear-gradient(180deg, rgba(19, 19, 19, 0.1), rgba(19, 19, 19, 0.24)),
+    linear-gradient(135deg, #efe6d8 0%, #b3a48d 100%);
+}
+
+.poster-meta {
+  display: grid;
+  gap: 6px;
+}
+
+.poster-tag {
+  color: rgba(22, 22, 22, 0.7);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.poster-meta strong {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.play-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 74px;
+  padding: 10px 14px;
+  border: 1px solid rgba(22, 22, 22, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .button,

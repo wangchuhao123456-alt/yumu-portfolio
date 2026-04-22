@@ -17,6 +17,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -27,6 +29,7 @@ body {
     radial-gradient(circle at top left, rgba(200, 183, 157, 0.35), transparent 28%),
     linear-gradient(180deg, #ebe7df 0%, #f5f2ec 100%);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 body.is-intro-active {
@@ -50,10 +53,17 @@ a {
   text-decoration: none;
 }
 
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
 .site-shell {
   width: min(calc(100% - 32px), var(--max-width));
   margin: 0 auto;
   padding: 20px 0 40px;
+  overflow-x: clip;
 }
 
 .js-ready .reveal {
@@ -339,6 +349,7 @@ main {
 .two-col-list strong,
 .contact-list strong {
   font-weight: 500;
+  overflow-wrap: anywhere;
 }
 
 .section-grid {
@@ -411,6 +422,7 @@ main {
 .brief-list li {
   margin: 0;
   color: var(--muted);
+  overflow-wrap: anywhere;
 }
 
 .card-body {
@@ -602,6 +614,15 @@ main {
   gap: 14px;
 }
 
+.contact-list a,
+.brief-list li,
+.lead,
+.service-card > p,
+.note p {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .brief-list li {
   line-height: 1.65;
 }
@@ -721,6 +742,7 @@ main {
   .site-nav {
     width: 100%;
     gap: 12px;
+    justify-content: space-between;
   }
 
   .site-nav a {
@@ -755,21 +777,21 @@ main {
   }
 
   .hero h1 {
-    font-size: clamp(3.5rem, 15vw, 4.8rem);
-    line-height: 0.96;
-    letter-spacing: -0.03em;
-    word-break: keep-all;
-    overflow-wrap: normal;
-    text-wrap: pretty;
-  }
-
-  .page-hero h1 {
-    font-size: clamp(3rem, 14vw, 4.2rem);
+    font-size: clamp(2.8rem, 12vw, 4rem);
     line-height: 0.98;
     letter-spacing: -0.03em;
     word-break: keep-all;
-    overflow-wrap: normal;
-    text-wrap: pretty;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.4rem, 10.8vw, 3.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
   }
 
   .lead {
@@ -835,8 +857,8 @@ main {
 
   .contact-card h2,
   .service-card h2 {
-    font-size: clamp(2rem, 8vw, 2.6rem);
-    line-height: 1;
+    font-size: clamp(1.8rem, 7.6vw, 2.4rem);
+    line-height: 1.04;
     letter-spacing: -0.02em;
   }
 
@@ -864,9 +886,10 @@ main {
   }
 
   .section-intro h2 {
-    font-size: clamp(2.2rem, 11vw, 3.2rem);
-    line-height: 0.98;
+    font-size: clamp(1.9rem, 9.2vw, 2.8rem);
+    line-height: 1.02;
     letter-spacing: -0.03em;
+    text-wrap: balance;
   }
 
   .card,
@@ -875,11 +898,93 @@ main {
     padding: 24px;
   }
 
+  .page-hero .lead,
+  .hero .lead,
+  .service-card > p,
+  .brief-list li,
+  .contact-list a {
+    font-size: 0.96rem;
+  }
+
   .intro-cn {
     letter-spacing: 0.02em;
   }
 
   .intro-en {
     letter-spacing: 0.28em;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-shell {
+    width: calc(100% - 16px);
+    padding-top: 10px;
+  }
+
+  .site-header,
+  .site-footer,
+  .hero,
+  .page-hero,
+  .feature-panel,
+  .contact-card,
+  .service-card,
+  .note,
+  .card {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .site-header {
+    padding: 18px 20px;
+  }
+
+  .site-nav {
+    gap: 8px;
+  }
+
+  .site-nav a {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .hero,
+  .page-hero {
+    gap: 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.35rem, 11vw, 3.2rem);
+    max-width: 7ch;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.05rem, 9.6vw, 2.9rem);
+    max-width: 10ch;
+  }
+
+  .section-intro h2 {
+    font-size: clamp(1.7rem, 8.4vw, 2.4rem);
+  }
+
+  .contact-card h2,
+  .service-card h2,
+  .card h3 {
+    font-size: clamp(1.55rem, 7vw, 2rem);
+  }
+
+  .card-body p:last-child,
+  .note p,
+  .service-card > p,
+  .brief-list li,
+  .contact-list a,
+  .lead {
+    font-size: 0.94rem;
+    line-height: 1.7;
+  }
+
+  .price {
+    font-size: clamp(1.7rem, 9vw, 2.3rem);
   }
 }
